@@ -1,8 +1,9 @@
-# Git 指令
+﻿# Git 指令
 
 ### github repo有人更新時跑 `git pull` 更新本地檔案
 
 ## 修改上傳
+HI
 `git add .`    
 `git commit -m "<訊息>"`   
 `git push`
