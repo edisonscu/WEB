@@ -1,11 +1,15 @@
 import React from 'react';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      hello world
-    </div>
-  );
+interface AppProps {
+    token?: string;
+}
+
+const App: React.FC<AppProps> = ({ token }) => {
+    return (
+        <div className="App">
+            hello {token}
+        </div>
+    );
 }
 
 export default App;

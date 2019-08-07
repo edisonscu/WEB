@@ -1,20 +1,43 @@
-from flask import Flask,request
+from flask import Flask,request,render_template
 from flask_cors import CORS
-import json
+import json,os,requests
 from time import sleep
-
 import pymongo
+from dotenv import load_dotenv
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+BUILD_DIR = os.path.join(ROOT_DIR,'..','client','build')
+
+dotenv_path = os.path.join(ROOT_DIR, '.env')
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path, override=True)
+
 client = pymongo.MongoClient(host='127.0.0.1', port=27017)
 db = client.flask
 collection = db.flask_test
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder=BUILD_DIR,template_folder='../client/build',static_url_path="")
 CORS(app)
 
 @app.route('/')
 def home():
-    res = {"status":"hello"}
-    return json.dumps(res)
+    if 'code' in request.args:
+        code = request.args['code']
+        res = requests.post('https://api.line.me/oauth2/v2.1/token',
+        headers={
+            'Content-Type':'application/x-www-form-urlencoded'
+        },
+        data={
+            'grant_type':'authorization_code',
+            'redirect_uri':'http://localhost:5000',
+            'client_id':os.environ.get('LOGIN_ID'),
+            'client_secret':os.environ.get('LOGIN_SECRET'),
+            'code':code
+        })
+        data = res.content.decode()
+        data_dict = json.loads(data)
+        return render_template('index.html',token=data_dict['id_token'])
+    return render_template('index.html')
 
 @app.route('/user',methods=['POST'])#POST
 def create_user():
