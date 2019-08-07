@@ -29,13 +29,14 @@ def home():
         },
         data={
             'grant_type':'authorization_code',
-            'redirect_uri':'http://localhost:5000',
+            'redirect_uri':request.url_root,
             'client_id':os.environ.get('LOGIN_ID'),
             'client_secret':os.environ.get('LOGIN_SECRET'),
             'code':code
         })
         data = res.content.decode()
         data_dict = json.loads(data)
+        print(request.url)
         return render_template('index.html',token=data_dict['id_token'])
     return render_template('index.html')
 
