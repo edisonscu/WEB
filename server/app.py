@@ -11,7 +11,7 @@ BUILD_DIR = os.path.join(ROOT_DIR,'..','client','build')
 dotenv_path = os.path.join(ROOT_DIR, '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path, override=True)
-
+    
 client = pymongo.MongoClient(host='127.0.0.1', port=27017)
 db = client.flask
 collection = db.flask_test
