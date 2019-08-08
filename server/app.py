@@ -3,6 +3,7 @@ from flask_cors import CORS
 import json,os,requests
 from time import sleep
 import pymongo
+from pprint import pprint
 from dotenv import load_dotenv
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -36,7 +37,7 @@ def home():
         })
         data = res.content.decode()
         data_dict = json.loads(data)
-        print(request.url)
+        pprint(data_dict)
         return render_template('index.html',token=data_dict['id_token'])
     return render_template('index.html')
 
