@@ -1,0 +1,59 @@
+.button {
+    display: inline-flex;
+    border: 2px solid #f5f6fa;
+    padding: 1.2rem;
+    color: #f5f6fa;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    a {
+        color: #f5f6fa;
+        text-decoration: none;
+        letter-spacing: 1px;
+    }
+}
+
+.button-main {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    a {
+        position: relative;
+        transition: all 0.45s ease-out;
+        font-size: inherit;
+    }
+
+    .spin {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        left: 70px;
+        top: 20px;
+        transform: rotate(0deg);
+        background: none;
+        position: absolute;
+        transition: all 0.5s ease-Out;
+    }
+
+    &:hover {
+        a {
+            color: #2d3142;
+        }
+
+        .spin {
+            width: 200%;
+            height: 500%;
+            opacity: 1;
+            left: -70px;
+            top: -70px;
+            background: #f5f6fa;
+            transform: rotate(80deg);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.profile {
+    @include flexbox-col(center, center);
+    padding: 5rem;
+    background-color: #273c75;
+
+    &__title {
+        &--container {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #f5f6fa;
+        }
+
+        &--text {
+            font-size: 2.5rem;
+            color: #f5f6fa;
+        }
+    }
+
+    .img-loader-container {
+        width: 10rem;
+        height: 10rem;
+        margin-bottom: 2rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
