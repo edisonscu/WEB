@@ -16,7 +16,8 @@ dotenv_path = os.path.join(ROOT_DIR, '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path, override=True)
 
-client = pymongo.MongoClient(os.environ.get('CONNECTION_STRING'))
+client = pymongo.MongoClient(os.environ.get('CONNECTION_STRING'), connectTimeoutMS=30000,
+                             socketTimeoutMS=None, socketKeepAlive=True, connect=False, maxPoolsize=1)
 db = client.data
 food_collection = db.food_type_tags
 user_collection = db.user
