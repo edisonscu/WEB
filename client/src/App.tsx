@@ -1,10 +1,10 @@
 import React from 'react';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import jwt from 'jsonwebtoken';
-import Typist from 'react-typist';
 
-import ImageLoader from './components/ImageLoader';
-import ButtonMain from './components/ButtonMain';
+import Profile from './components/Profile';
+import Preference from './components/Preference';
 
 interface AppProps {
     token?: string;
@@ -26,18 +26,12 @@ const App: React.FC<AppProps> = ({ token }) => {
         const result = jwt.decode(token) as Result;
         return (
             <div className="container">
-                <div className="profile">
-                    <Typist className="profile__title--container" avgTypingDelay={120} cursor={{ hideWhenDone: true }}>
-                        <span className="profile__title--text">Hello </span>
-                        <Typist.Delay ms={1000} />
-                        <span className="profile__title--text">{result.name}</span>
-                    </Typist>
-                    <ImageLoader src={result.picture} />
-                    <ButtonMain
-                        text="開始設定喜好！"
-                        onClick={() => { }}
-                    />
-                </div>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/" exact render={(props) => <Profile {...props} name={result.name} picture={result.picture} />} />
+                        <Route path="/preference" render={(props) => <Preference {...props} id={result.sub} />} />
+                    </Switch>
+                </BrowserRouter>
             </div>
         );
     }
