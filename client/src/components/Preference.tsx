@@ -5,6 +5,9 @@ import PreferenceCard from './PreferenceCard';
 
 import fc from "../assets/fc.jpg";
 import loader from '../assets/loader2.svg';
+import like from '../assets/icons8-happy-50.png';
+import ok from '../assets/icons8-neutral-50.png';
+import dislike from '../assets/icons8-sad-50.png';
 
 interface Food {
     foodType: string;
@@ -80,10 +83,19 @@ export default ({ id }: PreferenceProps): JSX.Element => {
         <div className="preference">
             <PreferenceCard title={currentFood.foodType} image={fc} />
             <div className="preference__control">
-                <div className="preference__control--button cross" onClick={() => { handleButtonClick('dislike') }} >&#10008;</div>
-                <div className="preference__control--button check" onClick={() => { handleButtonClick('ok') }} >&#10004;</div>
-                <div className="preference__control--button heart" onClick={() => { handleButtonClick('like') }} >&hearts;</div>
+                <div className="preference__control--button cross" onClick={() => { handleButtonClick('dislike') }} >
+                    <img src={dislike} alt="dislike" />
+                </div>
+                <div className="preference__control--button check" onClick={() => { handleButtonClick('ok') }} >
+                    <img src={ok} alt="ok" />
+                </div>
+                <div className="preference__control--button heart" onClick={() => { handleButtonClick('like') }} >
+                    <img src={like} alt="like" />
+                </div>
             </div>
+            <footer className="credit_message">
+                <a target="_blank" href="https://icons8.com/icons/set/happy">Happy</a>, <a target="_blank" href="https://icons8.com/icons/set/neutral-emoticon--v2">Neutral</a> and other icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+            </footer>
         </div>
     );
 }
