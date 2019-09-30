@@ -3,15 +3,16 @@ import axios from "axios";
 
 import PreferenceCard from './PreferenceCard';
 
-import fc from "../assets/fc.jpg";
 import loader from '../assets/loader2.svg';
 import like from '../assets/icons8-happy-50.png';
 import ok from '../assets/icons8-neutral-50.png';
 import dislike from '../assets/icons8-sad-50.png';
+import completeIcon from '../assets/icons8-completed-task-64.png';
 
 interface Food {
     foodType: string;
     tags: string[];
+    pic:string;
 }
 
 interface UserPreference {
@@ -63,7 +64,7 @@ export default ({ id }: PreferenceProps): JSX.Element => {
         }
     };
 
-    if (foods.length == 0) {
+    if (foods.length === 0) {
         return (
             <div className="preference">
                 <img src={loader} alt="loader" />
@@ -72,7 +73,8 @@ export default ({ id }: PreferenceProps): JSX.Element => {
     } else if (complete) {
         return (
             <div className="preference">
-                Finish
+                <h1 className="finish--text">Finish</h1>
+                <img src={completeIcon} alt="complete"/>
             </div>
         )
     }
@@ -81,7 +83,7 @@ export default ({ id }: PreferenceProps): JSX.Element => {
 
     return (
         <div className="preference">
-            <PreferenceCard title={currentFood.foodType} image={fc} />
+            <PreferenceCard title={currentFood.foodType} image={currentFood.pic} />
             <div className="preference__control">
                 <div className="preference__control--button cross" onClick={() => { handleButtonClick('dislike') }} >
                     <img src={dislike} alt="dislike" />
@@ -94,7 +96,7 @@ export default ({ id }: PreferenceProps): JSX.Element => {
                 </div>
             </div>
             <footer className="credit_message">
-                <a target="_blank" href="https://icons8.com/icons/set/happy">Happy</a>, <a target="_blank" href="https://icons8.com/icons/set/neutral-emoticon--v2">Neutral</a> and other icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+                <a target="_blank" href="https://icons8.com/icons/set/happy" rel="noopener noreferrer">Happy</a>, <a target="_blank" href="https://icons8.com/icons/set/neutral-emoticon--v2" rel="noopener noreferrer">Neutral</a> and other icons by <a target="_blank" href="https://icons8.com" rel="noopener noreferrer">Icons8</a>
             </footer>
         </div>
     );

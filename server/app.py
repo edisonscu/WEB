@@ -101,7 +101,8 @@ def get_food():
     for food in cur:
         foods.append({
             'foodType': food['foodType'],
-            'tags': food['tags']
+            'tags': food['tags'],
+            'pic': food['pic']
         })
     return json.dumps({
         'foods': foods
