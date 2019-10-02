@@ -47,7 +47,8 @@ def create_user():
                 'like': [],
                 'ok': [],
                 'dislike': []
-            }
+            },
+            'lan': "zh-TW"
         }
         user_collection.insert_one(user)
         return json_util.dumps({"status": "create user success", "user": user}), 201
