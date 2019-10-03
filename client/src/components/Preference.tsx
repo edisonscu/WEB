@@ -52,7 +52,6 @@ export default ({ id }: PreferenceProps): JSX.Element => {
         const pref = userPreference as UserPreference;
         pref[type as keyof UserPreference].push(food.foodType);
         setUserPreference(pref);
-        console.log(pref);
         if (current < foods.length - 1) {
             setCurrent(current + 1);
         } else {
@@ -83,7 +82,7 @@ export default ({ id }: PreferenceProps): JSX.Element => {
 
     return (
         <div className="preference">
-            <PreferenceCard title={currentFood.foodType} image={currentFood.pic} />
+            <PreferenceCard title={currentFood.foodType} image={currentFood.pic} handler={handleButtonClick} />
             <div className="preference__control">
                 <div className="preference__control--button cross" onClick={() => { handleButtonClick('dislike') }} >
                     <img src={dislike} alt="dislike" />
